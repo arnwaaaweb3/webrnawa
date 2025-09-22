@@ -1,0 +1,128 @@
+/* 🟦 Panel header */
+.menuPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+  height: clamp(3.5rem, 6vw, 5rem);
+  background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(25,25,25,0.45) 100%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 4vw, 1.5rem);
+  z-index: 25;
+
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.menuPanel.open {
+  transform: translateY(0);
+  opacity: 1;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+
+/* 🔘 Tombol hamburger (fixed kanan atas) */
+.menuTrigger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.menuTrigger:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.menuTrigger.active {
+  background: rgba(0, 0, 0, 0.0);
+}
+
+/* 🟨 Logo kiri */
+.logo {
+  width: clamp(2.5rem, 6vw, 6rem);
+  height: clamp(2.5rem, 6vw, 6rem);
+  background-image: url('/public/nawa.svg'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 🟩 Navbar tengah */
+.navbar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.menuList {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: color 0.2s ease, opacity 0.4s ease, transform 0.4s ease;
+  position: relative;
+}
+
+/* Animasi muncul staggered */
+.menuPanel.open .menuLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+.menuPanel.open .menuList li:nth-child(1) .menuLink { transition-delay: 0.1s; }
+.menuPanel.open .menuList li:nth-child(2) .menuLink { transition-delay: 0.2s; }
+.menuPanel.open .menuList li:nth-child(3) .menuLink { transition-delay: 0.3s; }
+.menuPanel.open .menuList li:nth-child(4) .menuLink { transition-delay: 0.4s; }
+
+/* Hover underline animasi */
+.menuLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #60a5fa;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.menuLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* 📱 Responsif */
+@media (max-width: 768px) {
+  .menuList {
+    gap: 1rem;
+  }
+
+  .menuLink span {
+    display: none; /* Mobile cuma icon aja */
+  }
+}

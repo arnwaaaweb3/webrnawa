@@ -3,12 +3,14 @@ import React, { useRef } from 'react';
 import DarkVeil from '../components/DarkVeil';
 import styles from '../styles/HomePage.module.css';
 import VariableProximity from '../components/VariableProximity';
+import Header from '../components/Header';
 
 const HomePage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <div className={styles.container} ref={containerRef}>
+      <Header />
       <DarkVeil />
       <div className={styles.titleContainer}>
         <VariableProximity
