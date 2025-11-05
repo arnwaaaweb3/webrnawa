@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DarkVeil from '../components/DarkVeil';
 import VariableProximity from '../components/VariableProximity';
 import StaggeredMenu from "../components/StaggeredMenu";
-import styles from "../styles/StaggeredMenu.module.css"
+import styles from "../styles/StaggeredMenu.module.css";
 
 const HomePage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
