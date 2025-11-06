@@ -1,6 +1,6 @@
 /* ================================
-   Staggered Menu Styles
-   ================================ */
+   Staggered Menu Styles
+   ================================ */
 
 /* Wrapper */
 .staggered-menu-wrapper {
@@ -84,6 +84,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  position: relative; 
+  height: 100%;
+  /* Tambahkan padding-bottom agar logo tidak menutupi item terakhir */
+  padding-bottom: 80px; 
 }
 
 /* Menu List */
@@ -99,10 +103,11 @@
 /* Menu Item */
 .sm-panel-item {
   position: relative;
-  display: inline-block;
+  display: block; 
   cursor: pointer;
   padding-right: 1rem;
-  transition: background 0.25s, color 0.25s;
+  transition: none; 
+  will-change: color;
 }
 
 /* Menu Item Link */
@@ -115,18 +120,38 @@
   line-height: 1.2;
   letter-spacing: normal;
   text-decoration: none;
-  text-transform: none;
   color: inherit;
   transition: color 0.25s ease;
+  position: relative;
+  overflow: hidden; 
 }
 .sm-panel-item a:hover {
-  color: var(--sm-accent, #5227ff);
+  color: var(--sm-accent, #ff2dd1);
 }
 .sm-panel-item:hover {
   color: inherit;
 }
 .sm-panel-item:hover a {
-  color: var(--sm-accent, #5227ff);
+  color: var(--sm-accent, #ff2dd1);
+}
+
+/* Underline Sliding Effect */
+.sm-panel-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0.1rem;
+  left: 0;
+  width: 100%;
+  height: 4px; /* Tebal garis */
+  background: var(--sm-accent, #ff2dd1);
+  transform: translateX(-100%); 
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1); 
+}
+
+/* Animasi saat hover */
+.sm-panel-item a:hover::after {
+  /* Luncurkan garis masuk */
+  transform: translateX(0); 
 }
 
 /* Label */
@@ -192,7 +217,41 @@
   color: var(--sm-accent, #ff0000);
 }
 
-/* Menu Toggle Button */
+/* 🔥 TRIBUTE FOOTER BARU (Vertikal) */
+.sm-tribute-footer {
+    position: absolute;
+    bottom: 130px; 
+    right: -10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    gap: 4px;
+    color: #888; 
+    font-size: 0.8rem;
+    font-family: sans-serif; 
+}
+
+.sm-tribute-text {
+    text-align: right;
+    gap: 1px;
+    margin: 0px;
+}
+
+/* 🔥 CONTAINER UNTUK LOGO STACK */
+.sm-logo-stack {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px;
+    right: 50px;
+    align-items: flex-end;
+}
+
+.sm-tribute-logo {
+    height: 40px; /* Ukuran logo yang disesuaikan */
+    width: auto;
+    opacity: 0.9;
+}
+
 .menuToggle {
   position: fixed;
   top: 20px;
@@ -205,7 +264,10 @@
   cursor: pointer;
   z-index: 10000;
   transition: all 0.3s ease;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
 }
+
 .menuToggle:hover {
   background: #fff;
   color: #1a1a1a;

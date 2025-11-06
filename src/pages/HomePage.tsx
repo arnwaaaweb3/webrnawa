@@ -3,6 +3,7 @@ import DarkVeil from '../components/DarkVeil';
 import VariableProximity from '../components/VariableProximity';
 import StaggeredMenu from "../components/StaggeredMenu";
 import styles from "../styles/StaggeredMenu.module.css";
+import RotatingText from "../components/RotatingText";
 
 const HomePage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,21 +14,57 @@ const HomePage: React.FC = () => {
     { text: 'Me', url: '/me' },
     { text: 'Projects', url: '/projects' },
     { text: 'Memo', url: '/memo' },
-    { text: 'Documentation', url: '/doc'},
+    { text: 'Documentation', url: '/doc' },
     { text: 'Socials', url: '/socials' },
+  ];
+
+  const rotatingTexts = [
+    'Public Relations Officer',
+    'Web3 Enthusiast',
+    'Smart Contract Developer',
+    'dApp Builder',
+    'Long-Term Investor',
+  ];
+
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  // ✅ Button image configs
+  const buttonConfigs = [
+    {
+      id: 1,
+      url: "/services",
+      normal: "/services.png",
+      hover: "/services-hover.png",
+    },
+    {
+      id: 2,
+      url: "/connect",
+      normal: "/connect.png",
+      hover: "/connect-hover.png",
+    },
+    {
+      id: 3,
+      url: "/docs",
+      normal: "/docs.png",
+      hover: "/docs-hover.png",
+    },
+    {
+      id: 4,
+      url: "/projects",
+      normal: "/projects.png",
+      hover: "/projects-hover.png",
+    },
   ];
 
   return (
     <div style={{ width: '100vw', height: '100vh', background: '#090040', position: 'relative' }}>
-      
-      {/* Menu Panel */}
+
       <StaggeredMenu
         isOpen={menuOpen}
         position="right"
         items={menuItems}
       />
 
-      {/* CONTENT WRAPPER → apply blur */}
       <div
         style={{
           width: "100%",
@@ -38,40 +75,125 @@ const HomePage: React.FC = () => {
           transition: "filter 0.4s ease",
         }}
       >
-        {/* Background effect */}
         <DarkVeil />
 
-        {/* Variable text */}
         <div
-          ref={variableProximityContainerRef}
           style={{
             zIndex: 10,
             position: 'absolute',
-            top: '32.5%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'white',
-            fontFamily: 'Lexend, sans-serif',
-            fontWeight: 600,
-            display: 'inline-block',
-            fontSize: 'clamp(1rem, 4.5vw, 3rem)',
-            textAlign: 'center',
+            top: 0, left: 0, right: 0, bottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '5vh 0',
           }}
         >
-          <VariableProximity
-            label={'Hello! My Name is Nawa'}
-            fromFontVariationSettings="'wght' 400, 'opsz' 9"
-            toFontVariationSettings="'wght' 1000, 'opsz' 40"
-            radius={100}
-            falloff="linear"
-            containerRef={variableProximityContainerRef}
-          />
+
+          {/* TEXT */}
+          <div
+            ref={variableProximityContainerRef}
+            style={{
+              color: 'white',
+              fontFamily: 'Lexend, sans-serif',
+              fontWeight: 600,
+              display: 'inline-block',
+              fontSize: 'clamp(1rem, 4.5vw, 3rem)',
+              textAlign: 'center',
+              marginBottom: '30px',
+            }}
+          >
+            <VariableProximity
+              label={'Hello! My Name is Nawa'}
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              radius={100}
+              falloff="linear"
+              containerRef={variableProximityContainerRef}
+            />
+
+            <div
+              style={{
+                marginTop: '12.5px',
+                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+                fontWeight: 300,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              I&apos;m a&nbsp;
+              <RotatingText
+                texts={rotatingTexts}
+                rotationInterval={3000}
+                staggerDuration={0.05}
+                style={{
+                  fontFamily: 'Lexend, sans-serif',
+                  fontWeight: 600,
+                  color: '#090040',
+                  backgroundColor: '#ff85e5',
+                  padding: '0.1em 0.5em',
+                  borderRadius: '0.2em',
+                  display: 'inline-flex',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* ✅ BUTTON GRID */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '25px',
+            width: 'min(100vw, 700px)',
+            justifyContent: 'center',
+          }}>
+            {buttonConfigs.map((button) => (
+              <button
+                key={button.id}
+                onClick={() => console.log(`Navigating to ${button.url}`)}
+                style={{
+                  backgroundImage: `url(${button.normal})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  borderRadius: "25px",
+                  border: "1px solid #5227ff",
+                  cursor: "pointer",
+                  width: "clamp(150px, 18vw, 240px)",
+                  height: "clamp(150px, 18vw, 240px)",
+                  aspectRatio: "1 / 1",
+                  transition: "0.25s ease",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundImage = `url(${button.hover})`)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundImage = `url(${button.normal})`)
+                }
+              />
+            ))}
+          </div>
+
         </div>
       </div>
-
-      {/* Tombol Toggle Menu (Ditinggalkan) */}
+      {/* ✅ FOOTER */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "15px",
+          width: "100%",
+          textAlign: "center",
+          color: "rgba(255,255,255,0.7)",
+          fontFamily: "Lexend, sans-serif",
+          fontSize: "0.9rem",
+          letterSpacing: "0.5px",
+          userSelect: "none",
+        }}
+      >
+        © {new Date().getFullYear()} Nawa. All Rights Reserved.
+      </div>
       <button
-        onClick={() => setMenuOpen(prev => !prev)}
+        onClick={toggleMenu}
         className={styles.menuToggle}
       >
         {menuOpen ? "Close" : "Menu"}
