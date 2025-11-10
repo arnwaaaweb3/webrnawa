@@ -1,8 +1,7 @@
 import React, { useRef, useLayoutEffect, useCallback } from "react";
 import gsap from "gsap";
 import styles from "../styles/StaggeredMenu.module.css"; 
-
-// --- Komponen Anak untuk MenuItem ---
+import RealTimeClock from "./RealTimeClock";
 
 interface MenuItemData {
     text: string;
@@ -133,20 +132,30 @@ const StaggeredMenu: React.FC<PanelProps> = ({
                         ref={footerRef} 
                         className={styles["sm-tribute-footer"]}
                     >
-                        <p className={styles["sm-tribute-text"]}>In Assistance of</p>
-                        
-                        <div className={styles["sm-logo-stack"]}>
-                            <img 
-                                src="/gemini.png"
-                                alt="Gemini AI Logo" 
-                                className={styles["sm-tribute-logo"]}
-                            />
+                        {/* [Morta] Wrapper baru untuk jam dan logo agar sejajar */}
+                        <div className={styles["sm-footer-content-flex"]}>
+                            
+                            {/* [Morta] Letakkan Jam Real-time di sebelah kiri */}
+                            <RealTimeClock />
 
-                            <img 
-                                src="/openai.png"
-                                alt="OpenAI Logo" 
-                                className={styles["sm-tribute-logo"]}
-                            />
+                            {/* [Morta] Wrapper untuk teks tribute dan logo stack di sebelah kanan */}
+                            <div className={styles["sm-logo-stack-wrapper"]}>
+                                <p className={styles["sm-tribute-text"]}>In Assistance of</p>
+                                
+                                <div className={styles["sm-logo-stack"]}>
+                                    <img 
+                                        src="/gemini.png"
+                                        alt="Gemini AI Logo" 
+                                        className={styles["sm-tribute-logo"]}
+                                    />
+
+                                    <img 
+                                        src="/openai.png"
+                                        alt="OpenAI Logo" 
+                                        className={styles["sm-tribute-logo"]}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
