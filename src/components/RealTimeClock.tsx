@@ -1,61 +1,60 @@
 // src/components/RealTimeClock.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import styles from '../styles/RealTimeClock.module.css';
 
-// Fungsi untuk memformat waktu dan tanggal
+// Format waktu + tanggal
 const formatDateTime = (date: Date): { time: string; date: string } => {
-  // Opsi untuk jam (format 24 jam)
   const timeFormatter = new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    hour12: false, 
+    hour12: false,
   });
 
-  // Opsi untuk tanggal (hari, bulan, tanggal, tahun)
   const dateFormatter = new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
     year: 'numeric',
   });
-  
+
   return {
     time: timeFormatter.format(date),
-    // Kita buat semua huruf kapital agar lebih berkarakter
-    date: dateFormatter.format(date).toUpperCase(), 
+    date: dateFormatter.format(date).toUpperCase(),
   };
 };
 
 const RealTimeClock: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const clockRef = useRef<HTMLDivElement>(null);
+
+  // ✅ GSAP Slide-in Animation
+  useLayoutEffect(() => {
+    if (!clockRef.current) return;
+
+    gsap.from(clockRef.current, {
+      opacity: 0,
+      y: 20,            // slide dari bawah
+      duration: 0.6,
+      ease: "power3.out"
+    });
+  }, []);
 
   useEffect(() => {
-    // Memperbarui waktu setiap 1000ms (1 detik)
     const timerId = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
 
-    // Cleanup function untuk menghentikan timer saat komponen di-unmount
     return () => clearInterval(timerId);
   }, []);
 
   const { time, date } = formatDateTime(currentDate);
 
   return (
-    <div 
-      style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'flex-start',
-        color: '#090040', 
-        fontFamily: 'Lexend, sans-serif',
-        fontSize: '0.9rem',
-        fontWeight: 400,
-        lineHeight: 1.2,
-      }}
-    >
-      <span style={{ fontWeight: 700, fontSize: '1.1em' }}>{time}</span>
-      <span>{date}</span>
+    <div ref={clockRef} className={styles["realtime-clock"]}>
+      <span className={styles["clock-time"]}>{time}</span>
+      <span className={styles["clock-date"]}>{date}</span>
     </div>
   );
 };

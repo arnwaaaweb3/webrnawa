@@ -1,9 +1,16 @@
+// src/pages/HomePage.tsx
+
 import React, { useState } from 'react';
+// Import motion dari 'motion/react'
+import { motion } from 'motion/react'; //
 import DarkVeil from '../components/DarkVeil';
 import VariableProximity from '../components/VariableProximity';
 import StaggeredMenu from "../components/StaggeredMenu";
-import styles from "../styles/StaggeredMenu.module.css";
 import RotatingText from "../components/RotatingText";
+import GlareHover from "../components/GlareHover";
+
+import styles from "../styles/StaggeredMenu.module.css";
+
 
 const HomePage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -90,7 +97,7 @@ const HomePage: React.FC = () => {
           }}
         >
 
-          {/* TEXT */}
+          {/* ... (Teks dan VariableProximity tidak berubah) ... */}
           <div
             ref={variableProximityContainerRef}
             style={{
@@ -140,7 +147,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* ✅ BUTTON GRID */}
+          {/* ✅ BUTTON GRID - DIGANTI DENGAN GLareHover + motion.button */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -149,34 +156,55 @@ const HomePage: React.FC = () => {
             justifyContent: 'center',
           }}>
             {buttonConfigs.map((button) => (
-              <button
+              <GlareHover 
                 key={button.id}
-                onClick={() => console.log(`Navigating to ${button.url}`)}
-                style={{
-                  backgroundImage: `url(${button.normal})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: "25px",
-                  border: "1px solid #5227ff",
-                  cursor: "pointer",
-                  width: "clamp(150px, 18vw, 240px)",
-                  height: "clamp(150px, 18vw, 240px)",
-                  aspectRatio: "1 / 1",
-                  transition: "0.25s ease",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundImage = `url(${button.hover})`)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundImage = `url(${button.normal})`)
-                }
-              />
+                glareColor="#ff85e5"
+                glareOpacity={0.6}
+                glareAngle={-30}
+                glareSize={200}
+                transitionDuration={300}
+              >
+                <motion.button
+                  onClick={() => console.log(`Navigating to ${button.url}`)}
+                  style={{
+                    backgroundImage: `url(${button.normal})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: "25px",
+                    border: "1px solid #5227ff",
+                    cursor: "pointer",
+                    width: "clamp(150px, 18vw, 240px)",
+                    height: "clamp(150px, 18vw, 240px)",
+                    aspectRatio: "1 / 1",
+                  }}
+                  // 🔥 MENGGUNAKAN FRAMER MOTION UNTUK EFEK SCALE
+                  whileHover={{ 
+                    scale: 1.05, 
+                    boxShadow: "0 0 10px rgba(255, 133, 229, 0.5)", // Shadow efek glow
+                    transition: { duration: 0.25 }
+                  }}
+                  whileTap={{ 
+                    scale: 0.95,
+                    transition: { duration: 0.1 } 
+                  }}
+                  // MENGGANTI GAMBAR DENGAN LOGIKA MANUAL UNTUK URUTAN EFEK
+                  onMouseEnter={(e) => {
+                    // Logika Glare Hover terjadi di lapisan pseudo-element GlareHover
+                    // Di sini kita langsung ganti ke gambar hover
+                    e.currentTarget.style.backgroundImage = `url(${button.hover})`;
+                  }}
+                  onMouseLeave={(e) => {
+                    // Kembali ke gambar normal setelah kursor pergi
+                    e.currentTarget.style.backgroundImage = `url(${button.normal})`;
+                  }}
+                />
+              </GlareHover>
             ))}
           </div>
 
         </div>
       </div>
-      {/* ✅ FOOTER */}
+      {/* FOOTER */}
       <div
         style={{
           position: "absolute",

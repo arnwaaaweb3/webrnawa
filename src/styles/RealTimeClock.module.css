@@ -1,0 +1,18 @@
+.realtime-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #090040;
+  font-family: "Lexend", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 140px; 
+  left: 0px;
+}
+
+.clock-time {
+  font-weight: 700;
+  font-size: 1.1em;
+}

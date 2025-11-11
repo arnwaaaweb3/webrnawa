@@ -1,0 +1,66 @@
+.glare-hover {
+  /* Default values, but mostly overridden by inline styles using CSS variables */
+  width: var(--gh-width, auto);
+  height: var(--gh-height, auto);
+  background: var(--gh-bg);
+  border-radius: var(--gh-br);
+  border: 1px solid var(--gh-border);
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  /* Penting: Pastikan tombol di dalamnya mengambil ruang penuh */
+  padding: 0; 
+}
+
+/* Memastikan elemen anak (yaitu <motion.button>) mengisi ruang penuh GlareHover */
+.glare-hover > * {
+  width: 100%;
+  height: 100%;
+}
+
+.glare-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Atur z-index agar Glare berada di atas gambar normal, tapi di bawah konten (jika ada) */
+  z-index: 2; 
+  background: linear-gradient(
+    var(--gh-angle),
+    hsla(0, 0%, 0%, 0) 60%,
+    var(--gh-rgba) 70%,
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  transition: var(--gh-duration) ease;
+  background-size:
+    var(--gh-size) var(--gh-size),
+    100% 100%;
+  background-repeat: no-repeat;
+  background-position:
+    -100% -100%,
+    0 0;
+}
+
+.glare-hover:hover {
+  cursor: pointer;
+  /* Hapus semua style di sini, biarkan anak-anaknya yang di-hover/motion */
+}
+
+.glare-hover:hover::before {
+  background-position:
+    100% 100%,
+    0 0;
+}
+
+.glare-hover--play-once::before {
+  transition: none;
+}
+
+.glare-hover--play-once:hover::before {
+  transition: var(--gh-duration) ease;
+  background-position:
+    100% 100%,
+    0 0;
+}
