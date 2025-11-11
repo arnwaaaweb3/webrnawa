@@ -50,22 +50,31 @@ const ServicesPage: React.FC = () => {
           style={{
             zIndex: 10,
             position: 'absolute',
-            top: 0, left: 0, right: 0, bottom: 0,
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
             color: 'white',
             fontFamily: 'Lexend, sans-serif',
-            padding: '5vh 5vw',
-            textAlign: 'center',
+            padding: '2.5vh 5vw',
+            textAlign: 'left',
           }}
         >
           {/* Heading dengan warna yang selaras dengan hue (oranye keemasan) */}
-          <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, color: `hsl(${SERVICES_HUE}, 80%, 70%)` }}>
-            My Services
+          <h1 style={{ 
+              fontSize: 'clamp(2rem, 5vw, 4rem)', 
+              fontWeight: 800, 
+              color: `hsl(${SERVICES_HUE}, 80%, 70%)`,
+              // 🔥 MODIFIKASI: Menambahkan margin bawah agar terpisah dari paragraf
+              marginBottom: '0.5em', 
+            }}>
+            What Can I Do For You?
           </h1>
-          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '800px', opacity: 0.8 }}>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '500px', opacity: 0.8 }}>
             Halaman ini didedikasikan untuk menampilkan layanan dan penawaran profesionalmu, Nawa. Saatnya isi dengan konten yang memukau!
           </p>
         </div>
