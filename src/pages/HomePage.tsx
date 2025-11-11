@@ -1,8 +1,9 @@
-// src/pages/HomePage.tsx
+// src/pages/HomePage.tsx (Perbaikan)
 
 import React, { useState } from 'react';
-// Import motion dari 'motion/react'
-import { motion } from 'motion/react'; //
+import { motion } from 'motion/react';
+// 🔥 TAMBAH: Import useNavigate untuk navigasi programatik
+import { useNavigate } from 'react-router-dom'; 
 import DarkVeil from '../components/DarkVeil';
 import VariableProximity from '../components/VariableProximity';
 import StaggeredMenu from "../components/StaggeredMenu";
@@ -15,6 +16,9 @@ import styles from "../styles/StaggeredMenu.module.css";
 const HomePage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const variableProximityContainerRef = React.useRef<HTMLDivElement>(null);
+  
+  // 🔥 TAMBAH: Inisialisasi hook useNavigate
+  const navigate = useNavigate();
 
   const menuItems = [
     { text: 'Home', url: '/' },
@@ -142,12 +146,12 @@ const HomePage: React.FC = () => {
                   padding: '0.1em 0.5em',
                   borderRadius: '0.2em',
                   display: 'inline-flex',
-                }}
+                } as React.CSSProperties} // Cast ditambahkan untuk kehati-hatian tipe
               />
             </div>
           </div>
 
-          {/* ✅ BUTTON GRID - DIGANTI DENGAN GLareHover + motion.button */}
+          {/* ✅ BUTTON GRID - PERBAIKAN FUNGSI ONCLICK */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -165,7 +169,8 @@ const HomePage: React.FC = () => {
                 transitionDuration={300}
               >
                 <motion.button
-                  onClick={() => console.log(`Navigating to ${button.url}`)}
+                  // 🔥 FIX: Memicu navigasi ke URL tombol
+                  onClick={() => navigate(button.url)}
                   style={{
                     backgroundImage: `url(${button.normal})`,
                     backgroundSize: "cover",
@@ -176,7 +181,7 @@ const HomePage: React.FC = () => {
                     width: "clamp(150px, 18vw, 240px)",
                     height: "clamp(150px, 18vw, 240px)",
                     aspectRatio: "1 / 1",
-                  }}
+                  } as React.CSSProperties}
                   // 🔥 MENGGUNAKAN FRAMER MOTION UNTUK EFEK SCALE
                   whileHover={{ 
                     scale: 1.05, 
@@ -189,12 +194,9 @@ const HomePage: React.FC = () => {
                   }}
                   // MENGGANTI GAMBAR DENGAN LOGIKA MANUAL UNTUK URUTAN EFEK
                   onMouseEnter={(e) => {
-                    // Logika Glare Hover terjadi di lapisan pseudo-element GlareHover
-                    // Di sini kita langsung ganti ke gambar hover
                     e.currentTarget.style.backgroundImage = `url(${button.hover})`;
                   }}
                   onMouseLeave={(e) => {
-                    // Kembali ke gambar normal setelah kursor pergi
                     e.currentTarget.style.backgroundImage = `url(${button.normal})`;
                   }}
                 />
