@@ -1,0 +1,59 @@
+/* src/styles/CaretTextEffect.module.css */
+.caret-effect-wrapper {
+  /* Set base font styles, inherited by both layers */
+  font-family: 'Lexend', sans-serif;
+  font-weight: 800;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit; /* Ini akan inherit #ffffff dari ServicesPage.tsx */
+  
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: text; 
+}
+
+/* Layer 1: The Outline Text (Pseudo-element ::before) */
+.caret-effect-wrapper::before {
+  content: attr(data-text); 
+  position: absolute;
+  inset: 0;
+  z-index: 1; 
+  
+  /* Set the text color to transparent and apply a white stroke */
+  color: transparent; 
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: white; /* ✨ KEMBALI: Outline jadi Putih */
+  
+  /* Fallback text-shadow untuk outline non-Webkit */
+  text-shadow: 
+    -1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+    1px  1px 0 #fff;
+}
+
+/* Layer 2: The Solid Fill Text (The actual text content in the DOM) */
+.caret-effect-filled-text {
+  position: relative;
+  z-index: 2;
+  color: inherit; /* Ini akan menjadi #ffffff (agar tidak ada masalah inherit) */
+  background: linear-gradient(
+    to right, 
+    #ffffff 0%, /* ✨ DIUBAH: Warna FILL Solidnya diubah manual jadi Putih */
+    #ffffff var(--caret-fill-percent, 0%), 
+    transparent var(--caret-fill-percent, 0%), 
+    transparent 100%
+  );
+  
+  /* Ini adalah kunci untuk menampilkan background (solid color) sebagai fill teks */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
+
+  /* Pastikan tidak ada stroke/outline tambahan di layer ini */
+  -webkit-text-stroke: none; 
+  
+  /* Smooth transition */
+  transition: all var(--fill-transition-duration, 0.1s) linear; 
+}

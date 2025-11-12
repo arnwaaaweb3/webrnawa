@@ -5,7 +5,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
 // 🔥 TAMBAH: Import ServicesPage
-import ServicesPage from './pages/ServicesPage'; // Asumsi file ServicesPage.tsx ada di folder pages
+import ServicesPage from './pages/ServicesPage'; 
+// 🔥 TAMBAH: Import halaman-halaman baru
+import ConnectPage from './pages/ConnectPage'; 
+import DocsPage from './pages/DocsPage';
+import ProjectsPage from './pages/ProjectsPage';
 
 const App: React.FC = () => {
   return (
@@ -17,9 +21,11 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           {/* Tambahkan route untuk ServicesPage */}
           <Route path="/services" element={<ServicesPage />} /> 
-          {/* Tambahkan rute lain jika ada, misalnya /connect, /docs, /projects */}
-          {/* Contoh: <Route path="/connect" element={<ConnectPage />} /> */}
-          {/* Anda dapat menambahkan Route untuk path lain yang ada di menu atau button configs */}
+          {/* 🔥 TAMBAH: Route untuk halaman baru */}
+          <Route path="/connect" element={<ConnectPage />} />
+          <Route path="/docs" element={<DocsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          {/* Kamu dapat menambahkan Route untuk path lain yang ada di menu atau button configs, seperti /me, /memo, /socials, dll. */}
         </Routes>
       </div>
     </BrowserRouter>

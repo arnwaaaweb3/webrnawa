@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-// 🔥 TAMBAH: Import useNavigate untuk navigasi programatik
 import { useNavigate } from 'react-router-dom'; 
 import DarkVeil from '../components/DarkVeil';
 import VariableProximity from '../components/VariableProximity';
@@ -69,7 +68,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ width: '100vw', height: '100vh', background: '#090040', position: 'relative' }}>
-
       <StaggeredMenu
         isOpen={menuOpen}
         position="right"
@@ -87,6 +85,19 @@ const HomePage: React.FC = () => {
         }}
       >
         <DarkVeil />
+        <img 
+          src="/nawa.png" 
+          alt="Nawa Logo" 
+          style={{
+            position: 'absolute',
+            top: '25px', 
+            left: '25px', 
+            width: 'clamp(20px, 5vw, 50px)', 
+            zIndex: 20,
+            cursor: 'pointer',
+          }}
+          onClick={() => navigate('/')} // Opsional: Bisa klik untuk kembali ke Home
+        />
 
         <div
           style={{

@@ -1,13 +1,13 @@
-// src/pages/ServicesPage.tsx
+// src/pages/ProjectsPage.tsx
 
 import React, { useState } from 'react';
 import DarkVeil from '../components/DarkVeil';
 import StaggeredMenu from "../components/StaggeredMenu";
 import styles from "../styles/StaggeredMenu.module.css"; 
-import CaretTextEffect from '../components/CaretTextEffect'; 
 
-const ServicesPage: React.FC = () => {
+const ProjectsPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const PROJECTS_HUE = 270; // Ungu untuk tema Projects
 
   const menuItems = [
     { text: 'Home', url: '/' },
@@ -20,20 +20,9 @@ const ServicesPage: React.FC = () => {
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
-  // 🔥 Nilai hueShift untuk halaman Services
-  const SERVICES_HUE = 35; 
-  const HEADING_TEXT = "What Can I Do For You?";
-
   return (
     <div style={{ width: '100vw', height: '100vh', background: '#090040', position: 'relative' }}>
-
-      {/* Staggered Menu untuk Navigasi */}
-      <StaggeredMenu
-        isOpen={menuOpen}
-        position="right"
-        items={menuItems}
-      />
-
+      <StaggeredMenu isOpen={menuOpen} position="right" items={menuItems} />
       <div
         style={{
           width: "100%",
@@ -44,49 +33,38 @@ const ServicesPage: React.FC = () => {
           transition: "filter 0.4s ease",
         }}
       >
-        {/* DarkVeil Background dengan hueShift 35 */}
-        <DarkVeil hueShift={SERVICES_HUE} />
-
-        {/* Area Konten Utama Services (Pojok Kiri Atas) */}
+        <DarkVeil hueShift={PROJECTS_HUE} />
         <div
           style={{
             zIndex: 10,
             position: 'absolute',
-            top: 0, left: 0, right: 0, bottom: 0,
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start', // Alignment ke kiri atas
-            justifyContent: 'flex-start', // Alignment ke kiri atas
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
             color: 'white',
             fontFamily: 'Lexend, sans-serif',
-            padding: '10vh 5vw', // Padding agar tidak mepet
+            padding: '2.5vh 5vw',
             textAlign: 'left',
           }}
         >
-          {/* 🔥 GUNAKAN KOMPONEN CaretTextEffect */}
-          <CaretTextEffect 
-            text={HEADING_TEXT}
-            style={{ 
-              fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)', 
-              fontWeight: 600, 
-              color: '#ffffff',
-              letterSpacing: '0.05em',
-              lineHeight: 1.2
-            }}
-          />
-          
-          <p style={{ 
-            fontSize: 'clamp(1rem, 2vw, 1.5rem)', 
-            maxWidth: '700px', 
-            opacity: 0.8,
-            marginTop: '20px', 
-          }}>
-            Here is the list of what services i can offer to you:
+          <h1 style={{ 
+              fontSize: 'clamp(2rem, 5vw, 4rem)', 
+              fontWeight: 800, 
+              color: `hsl(${PROJECTS_HUE}, 80%, 70%)`,
+              marginBottom: '0.5em', 
+            }}>
+            My Projects & Crafts
+          </h1>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '500px', opacity: 0.8 }}>
+            Lihat apa saja yang sudah aku bangun, mulai dari Smart Contract sampai dApp favoritku.
           </p>
         </div>
       </div>
-
-      {/* FOOTER dan Menu Toggle */}
       <div
         style={{
           position: "absolute",
@@ -103,15 +81,11 @@ const ServicesPage: React.FC = () => {
       >
         © {new Date().getFullYear()} Nawa. All Rights Reserved.
       </div>
-      
-      <button
-        onClick={toggleMenu}
-        className={styles.menuToggle}
-      >
+      <button onClick={toggleMenu} className={styles.menuToggle}>
         {menuOpen ? "Close" : "Menu"}
       </button>
     </div>
   );
 };
 
-export default ServicesPage;
+export default ProjectsPage;
