@@ -34,6 +34,7 @@ const HomePage: React.FC = () => {
     'Smart Contract Developer',
     'dApp Builder',
     'Long-Term Investor',
+    'Life-long Learner',
   ];
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
