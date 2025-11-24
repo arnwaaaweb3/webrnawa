@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import DarkVeil from '../components/DarkVeil';
 import StaggeredMenu from "../components/StaggeredMenu";
+import AnimatedTabs from "../components/AnimatedTabs";
 import styles from "../styles/StaggeredMenu.module.css"; 
 
 const ConnectPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const CONNECT_HUE = 180; // Biru/Cyan untuk tema Connect
+  const CONNECT_HUE = 180; 
 
   const menuItems = [
     { text: 'Home', url: '/' },
@@ -23,6 +24,7 @@ const ConnectPage: React.FC = () => {
   return (
     <div style={{ width: '100vw', height: '100vh', background: '#090040', position: 'relative' }}>
       <StaggeredMenu isOpen={menuOpen} position="right" items={menuItems} />
+      
       <div
         style={{
           width: "100%",
@@ -34,6 +36,7 @@ const ConnectPage: React.FC = () => {
         }}
       >
         <DarkVeil hueShift={CONNECT_HUE} />
+        
         <div
           style={{
             zIndex: 10,
@@ -44,14 +47,16 @@ const ConnectPage: React.FC = () => {
             bottom: 0,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
+            // 🔥 UPDATED: Container rata kiri (sesuai request)
+            alignItems: 'flex-start', 
+            justifyContent: 'center', // Tetap center secara vertikal agar enak dilihat
             color: 'white',
             fontFamily: 'Lexend, sans-serif',
-            padding: '2.5vh 5vw',
-            textAlign: 'left',
+            padding: '0 5vw', // Padding kiri-kanan saja, atas-bawah diurus justifyContent
+            textAlign: 'left', // Teks rata kiri
           }}
         >
+          {/* 🔥 UPDATED: Style H1 mengikuti rules ServicesPage persis */}
           <h1 style={{ 
               fontSize: "clamp(2.5rem, 4.5vw, 3.5rem)",
               fontWeight: 600,
@@ -59,20 +64,26 @@ const ConnectPage: React.FC = () => {
               letterSpacing: "0.05em",
               lineHeight: 1.2,
               margin: 0,
-              marginTop: "40px",
             }}>
             Let's Connect!
           </h1>
+          
           <p style={{ 
               fontSize: "clamp(1rem, 2vw, 1.5rem)",
               maxWidth: "700px",
-              opacity: 1,
-              marginTop: "20px", 
+              opacity: 0.8,
+              marginTop: "20px",
+              marginBottom: "22.5px", 
             }}>
-            Dont hesitate to say Hi and leave me message on:
+            Don't hesitate to say Hi and leave me message on:
           </p>
+
+          {/* Tabs Component */}
+          <AnimatedTabs />
+
         </div>
       </div>
+
       <div
         style={{
           position: "absolute",

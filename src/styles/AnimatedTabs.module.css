@@ -1,0 +1,115 @@
+/* src/styles/AnimatedTabs.module.css */
+
+.container {
+  width: 100%;
+  max-width: 800px; /* Membatasi lebar agar tabs tidak terlalu menyebar di layar lebar */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* Margin auto untuk horizontal centering jika diperlukan, tapi karena parent flex-start, ini akan ikut align kiri secara default */
+}
+
+/* Bagian Tombol Tab */
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 0.75rem; /* Jarak antar tombol konsisten */
+  
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%; /* Pastikan bar navigasi mengambil lebar penuh container */
+}
+
+.tabButton {
+  position: relative;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tabButton:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tabButton[data-active="true"] {
+  color: #fff;
+}
+
+/* Background Pill */
+.activeBackground {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+/* Bagian Konten */
+.contentContainer {
+  padding: 2rem;
+  background: rgba(17, 17, 17, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 150px;
+  height: 100%;
+  width: 760px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Styling Content */
+.dummyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.iconLarge {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+}
+
+.dummyTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Lexend', sans-serif;
+}
+
+.dummyDesc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 450px;
+  line-height: 1.5;
+}
