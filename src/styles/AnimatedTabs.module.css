@@ -5,7 +5,7 @@
   max-width: 925px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 /* Bagian Tombol Tab */
@@ -13,12 +13,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
-  gap: 0.75rem; 
+  gap: 0.5rem;
   
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 0.75rem;
+  padding: 0.5rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%; 
@@ -26,11 +26,11 @@
 
 .tabButton {
   position: relative;
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
   font-family: 'Lexend', sans-serif;
   font-weight: 500;
-  border-radius: 10px;
+  border-radius: 8px;
   color: rgba(255, 255, 255, 0.6);
   outline: none;
   border: none;
@@ -56,11 +56,11 @@
   position: absolute;
   inset: 0;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  border-radius: 8px;
   z-index: -1;
 }
 
-/* Bagian Konten - DIPERBAHARUI */
+/* Bagian Konten Container Utama */
 .contentContainer {
   padding: 1.5rem;
   background: rgba(17, 17, 17, 0.6);
@@ -71,56 +71,225 @@
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   
-  height: 250px;
+  height: 240px;
   width: 100%; 
-  max-width: 900px;
+  max-width: 890px;
   
   position: relative;
   overflow: hidden;
   
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* GESER KONTEN KE KANAN */
+  justify-content: center;
+  transition: background 0.4s ease, border 0.4s ease; /* Transisi halus saat ganti theme */
 }
 
 .contentWrapper {
-  width: auto; /* Atur lebar otomatis */
-  position: relative; /* Ganti absolute jadi relative */
-  padding: 0; /* Hapus padding */
-  margin-right: 2rem; /* Jarak dari tepi kanan */
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-/* Styling Content - DIPERBAHARUI */
+/* --- STRUKTUR 2 KOLOM --- */
+
 .dummyCard {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: flex-end; /* RATA KANAN */
-  text-align: right; /* RATA KANAN */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 1.5rem;
 }
 
+/* CONTAINER KIRI (Placeholder/Image) */
+.previewBox {
+  flex: 1;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  transition: background 0.3s ease;
+}
+
+/* CONTAINER KANAN (Teks & Icon) */
+.textGroup {
+  flex: 1;
+  display: flex;
+  gap: 20px; 
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 15px;
+  justify-content: center;
+}
+
+/* Styling Elemen Kanan */
 .iconLarge {
-  font-size: 3.5rem; 
+  font-size: 3rem;
   margin-bottom: 0.25rem;
+  top: 25px;
   position: relative;
-  bottom: 40px;
   filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
-  color: #2196F3; /* WARNA BIRU KONSISTEN */
+  color: #2196F3; 
+  transition: color 0.3s ease;
 }
 
 .dummyTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 0.25rem 0;
   font-family: 'Lexend', sans-serif;
-  color: #2196F3; /* WARNA BIRU KONSISTEN */
+  color: #2196F3;
+  transition: color 0.3s ease;
 }
 
 .dummyDesc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
-  max-width: 450px;
   line-height: 1.4;
   margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Tambahan untuk Navigasi Slider (Panah) */
+.navOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.navButton {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* --- FITUR BARU: LIGHT/DARK MODE TOGGLE --- */
+
+/* 1. Tombol Toggle (Matahari/Bulan) */
+.themeToggleBtn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 20;
+  
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.themeToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* 2. Style Khusus saat Mode LIGHT (Terang) Aktif */
+/* Selector ini artinya: Kalau elemen contentContainer punya atribut data-theme="light" */
+.contentContainer[data-theme="light"] {
+  background: rgba(245, 245, 245, 0.95); /* Jadi Putih */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1a1a1a; /* Text jadi gelap */
+}
+
+/* Override warna Text & Icon biar kebaca di background putih */
+.contentContainer[data-theme="light"] .dummyTitle {
+  color: #0056b3; /* Biru lebih gelap */
+}
+
+.contentContainer[data-theme="light"] .dummyDesc {
+  color: #444; /* Abu gelap */
+}
+
+.contentContainer[data-theme="light"] .iconLarge {
+  color: #0056b3;
+  filter: drop-shadow(0 0 8px rgba(0, 86, 179, 0.15));
+}
+
+/* Override Kotak Preview (Kiri) */
+.contentContainer[data-theme="light"] .previewBox {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Override Tombol Toggle saat Light Mode */
+.contentContainer[data-theme="light"] .themeToggleBtn {
+  background: rgba(0, 0, 0, 0.05);
+  color: #333;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.contentContainer[data-theme="light"] .themeToggleBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Override Tombol Navigasi Slider (Panah) */
+.contentContainer[data-theme="light"] .navButton {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+  .contentContainer {
+    height: auto;
+    min-height: 380px;
+    padding: 1.25rem;
+  }
+
+  .dummyCard {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .previewBox {
+    width: 100%;
+    min-height: 180px;
+  }
+
+  .textGroup {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .iconLarge {
+    font-size: 2.5rem;
+  }
 }
