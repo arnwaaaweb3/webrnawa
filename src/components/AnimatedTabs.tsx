@@ -9,8 +9,9 @@ import {
   FaLinkedin, 
   FaDiscord, 
   FaFacebook, 
-  FaEnvelope 
-} from "react-icons/fa"; // Pastikan react-icons terinstall
+  FaEnvelope,
+} from "react-icons/fa";
+import { SiThreads } from "react-icons/si";
 
 interface Tab {
   id: string;
@@ -19,15 +20,20 @@ interface Tab {
   content: React.ReactNode;
 }
 
-// Helper component untuk konten dummy biar kodenya rapi
-const DummyContent = ({ title, desc, icon, color }: { title: string, desc: string, icon: React.ReactNode, color: string }) => (
+// Helper component - HAPUS PROP COLOR TOTAL
+const DummyContent = ({ title, desc, icon }: { 
+  title: string, 
+  desc: string, 
+  icon: React.ReactNode 
+}) => (
   <div className={styles.dummyCard}>
-    <div className={styles.iconLarge} style={{ color }}>
+    {/* GANTI: Pakai className={styles.iconLarge} */}
+    <div className={styles.iconLarge}>
       {icon}
     </div>
-    <h2 className={styles.dummyTitle} style={{ color }}>{title}</h2>
+    {/* HAPUS inline color */}
+    <h2 className={styles.dummyTitle}>{title}</h2>
     <p className={styles.dummyDesc}>{desc}</p>
-    {/* Nanti tombol connect/follow bisa ditaruh di sini */}
   </div>
 );
 
@@ -39,19 +45,27 @@ const defaultTabs: Tab[] = [
     content: <DummyContent 
       title="Follow on Instagram" 
       desc="Lihat update visual dan story sehari-hari Nawa di sini." 
-      icon={<FaInstagram />} 
-      color="#E1306C" 
+      icon={<FaInstagram />}
     />
   },
   {
     id: "twitter",
-    label: "Twitter X",
+    label: "Twitter (X)",
     icon: <FaTwitter />,
     content: <DummyContent 
       title="Connect on X" 
       desc="Tempat Nawa ngetweet soal Web3, tech, dan random thoughts." 
-      icon={<FaTwitter />} 
-      color="#1DA1F2" 
+      icon={<FaTwitter />}
+    />
+  },
+  {
+    id: "threads",
+    label: "Threads",
+    icon: <SiThreads />,
+    content: <DummyContent 
+      title="Join Threads" 
+      desc="Diskusi berantai tentang proyek terbaru." 
+      icon={<SiThreads />}
     />
   },
   {
@@ -62,7 +76,6 @@ const defaultTabs: Tab[] = [
       title="Connect Professionally" 
       desc="Mari berjejaring secara profesional dan bahas peluang kolaborasi." 
       icon={<FaLinkedin />} 
-      color="#0077B5" 
     />
   },
   {
@@ -72,8 +85,7 @@ const defaultTabs: Tab[] = [
     content: <DummyContent 
       title="Join the Community" 
       desc="Ngobrol santai bareng komunitas di server Discord." 
-      icon={<FaDiscord />} 
-      color="#5865F2" 
+       icon={<FaDiscord />} 
     />
   },
   {
@@ -84,7 +96,6 @@ const defaultTabs: Tab[] = [
       title="Facebook" 
       desc="Stay connected with friends and family." 
       icon={<FaFacebook />} 
-      color="#1877F2" 
     />
   },
   {
@@ -95,7 +106,6 @@ const defaultTabs: Tab[] = [
       title="Send a Message" 
       desc="Butuh diskusi lebih serius? Kirim email langsung ke Nawa." 
       icon={<FaEnvelope />} 
-      color="#EA4335" 
     />
   },
 ];

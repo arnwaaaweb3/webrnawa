@@ -72,8 +72,8 @@ const ConnectPage: React.FC = () => {
               fontSize: "clamp(1rem, 2vw, 1.5rem)",
               maxWidth: "700px",
               opacity: 0.8,
-              marginTop: "20px",
-              marginBottom: "22.5px", 
+              marginTop: "15px",
+              marginBottom: "20px", 
             }}>
             Don't hesitate to say Hi and leave me message on:
           </p>
