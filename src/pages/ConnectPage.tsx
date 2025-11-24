@@ -53,15 +53,23 @@ const ConnectPage: React.FC = () => {
           }}
         >
           <h1 style={{ 
-              fontSize: 'clamp(2rem, 5vw, 4rem)', 
-              fontWeight: 800, 
-              color: `hsl(${CONNECT_HUE}, 80%, 70%)`,
-              marginBottom: '0.5em', 
+              fontSize: "clamp(2.5rem, 4.5vw, 3.5rem)",
+              fontWeight: 600,
+              color: "#ffffff",
+              letterSpacing: "0.05em",
+              lineHeight: 1.2,
+              margin: 0,
+              marginTop: "40px",
             }}>
             Let's Connect!
           </h1>
-          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '500px', opacity: 0.8 }}>
-            Temukan semua media sosial dan kontak aku di sini. Mari berjejaring!
+          <p style={{ 
+              fontSize: "clamp(1rem, 2vw, 1.5rem)",
+              maxWidth: "700px",
+              opacity: 1,
+              marginTop: "20px", 
+            }}>
+            Dont hesitate to say Hi and leave me message on:
           </p>
         </div>
       </div>
