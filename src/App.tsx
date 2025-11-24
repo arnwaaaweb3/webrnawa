@@ -1,12 +1,8 @@
 // src/App.tsx (Perbaikan)
 import React from 'react';
-// 🔥 TAMBAH: Import komponen routing
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
-
 import HomePage from './pages/HomePage';
-// 🔥 TAMBAH: Import ServicesPage
 import ServicesPage from './pages/ServicesPage'; 
-// 🔥 TAMBAH: Import halaman-halaman baru
 import ConnectPage from './pages/ConnectPage'; 
 import DocsPage from './pages/DocsPage';
 import ProjectsPage from './pages/ProjectsPage';
