@@ -8,7 +8,7 @@ import styles from "../styles/StaggeredMenu.module.css";
 
 const ConnectPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const CONNECT_HUE = 180; 
+  const CONNECT_HUE = 60; 
 
   const menuItems = [
     { text: 'Home', url: '/' },
