@@ -1,7 +1,7 @@
 /* src/styles/AnimatedTabs.module.css */
 .container {
   width: 100%;
-  max-width: 925px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   gap: 1rem;

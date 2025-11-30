@@ -1,4 +1,4 @@
-// src/components/SignatureNawaCard.tsx
+// SignatureNawaCard.tsx
 import React from "react";
 import styles from "../styles/SignatureNawaCard.module.css";
 
@@ -6,25 +6,25 @@ interface Props {
   name: string;
   role: string;
   image: string;
-  isMobile?: boolean;
 }
 
-const SignatureNawaCard: React.FC<Props> = ({ name, role, image, isMobile }) => {
+const SignatureNawaCard: React.FC<Props> = ({ name, role, image }) => {
   return (
-    <div className={styles.cardWrapper} data-ismobile={isMobile ? "true" : "false"}>
+    <div className={styles.cardWrapper}>
       <div className={styles.card}>
-        <div className={styles.left}>
+        <div className={styles.photoWrapper}>
           <img src={image} className={styles.photo} alt={name} />
         </div>
-        <div className={styles.right}>
-        <div  className={styles.name}>{name}</div>
-        <div className={styles.role}>{role}</div>
-        <a href="/me" className={styles.seeMoreLink}>
-          <p className={styles.seeMoreText}>See more about myself</p>
-        </a>
+        <div className={styles.info}>
+          <h2 className={styles.name}>{name}</h2>
+          <p className={styles.role}>{role}</p>
+          <a href="/me" className={styles.seeMoreLink}>
+            See more about myself
+          </a>
         </div>
       </div>
     </div>
   );
 };
+
 export default SignatureNawaCard;

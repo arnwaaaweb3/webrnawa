@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DarkVeil from '../components/DarkVeil';
 import StaggeredMenu from "../components/StaggeredMenu";
 import AnimatedTabs from "../components/AnimatedTabs";
-import SignatureNawaCard from "../components/SignatureNawaCard";  
+import SignatureNawaCard from "../components/SignatureNawaCard";
 import styles from "../styles/StaggeredMenu.module.css";
 const ConnectPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -59,7 +59,7 @@ const ConnectPage: React.FC = () => {
             maxWidth: "700px",
             opacity: "0.8",
             marginTop: "15px",
-            marginBottom: "30px",
+            marginBottom: "5px",
           }}>
             Don't hesitate to say Hi and leave me message on:
           </p>
@@ -79,13 +79,30 @@ const ConnectPage: React.FC = () => {
               <AnimatedTabs />
             </div>
             {/* RIGHT SIDE */}
-            <div style={{ flexShrink: 0 }}>
+            {/* RIGHT SIDE (CARD) - Fixed 16rem */}
+            <div style={{ flex: "0 0 16rem", borderRadius: "12px",  }}>
               <SignatureNawaCard
                 name="Nawa"
                 role="Public Relations Officer"
-                image="https://i.pravatar.cc/300?img=12"
+                image="/profil-nawa.jpg"
               />
             </div>
+            <div
+        style={{
+          position: "absolute",
+          bottom: "15px",
+          width: "100%",
+          textAlign: "center",
+          color: "rgba(255,255,255,0.7)",
+          fontFamily: "Lexend, sans-serif",
+          fontSize: "0.9rem",
+          letterSpacing: "0.5px",
+          userSelect: "none",
+          zIndex: 11,
+        }}
+      >
+        © {new Date().getFullYear()} Nawa. All Rights Reserved.
+      </div>
           </div>
         </div>
       </div>
