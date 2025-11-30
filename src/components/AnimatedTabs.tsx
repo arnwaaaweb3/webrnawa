@@ -1,14 +1,13 @@
 // src/components/AnimatedTabs.tsx
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "../styles/AnimatedTabs.module.css";
-import { 
-  FaInstagram, 
-  FaTwitter, 
-  FaLinkedin, 
-  FaDiscord, 
-  FaFacebook, 
+import {
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaDiscord,
+  FaFacebook,
   FaEnvelope,
   FaImage,
   FaChevronLeft,
@@ -21,7 +20,7 @@ import { SiThreads } from "react-icons/si";
 // --- KOMPONEN INSTAGRAM (API REAL + SLIDER) ---
 const InstagramTabContent = () => {
   const [posts, setPosts] = useState<any[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0); 
+  const [currentIndex, setCurrentIndex] = useState(0);
   const token = import.meta.env.VITE_IG_TOKEN;
 
   const truncate = (str: string, n: number) => {
@@ -62,20 +61,20 @@ const InstagramTabContent = () => {
               <button onClick={handleNext} className={styles.navButton}><FaChevronRight size={12} /></button>
             </div>
             <AnimatePresence mode="wait">
-              <motion.a 
+              <motion.a
                 key={activePost.id}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                href={activePost.permalink} 
-                target="_blank" 
+                href={activePost.permalink}
+                target="_blank"
                 rel="noopener noreferrer"
                 style={{ width: "100%", height: "100%", display: "block" }}
               >
-                <img 
-                  src={activePost.media_type === "VIDEO" ? activePost.thumbnail_url : activePost.media_url} 
-                  alt={activePost.caption || "Instagram Post"} 
+                <img
+                  src={activePost.media_type === "VIDEO" ? activePost.thumbnail_url : activePost.media_url}
+                  alt={activePost.caption || "Instagram Post"}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </motion.a>
@@ -160,16 +159,15 @@ const TwitterTabContent = () => {
     <div className={styles.dummyCard}>
       {/* KIRI: Preview Box (Logic Gambar vs Icon) */}
       <div className={styles.previewBox} style={{ position: 'relative', border: activeTweet.image ? "none" : "2px dashed rgba(255,255,255,0.1)", overflow: 'hidden' }}>
-        
+       
         <div className={styles.navOverlay}>
           <button onClick={handlePrev} className={styles.navButton}><FaChevronLeft size={12} /></button>
           <button onClick={handleNext} className={styles.navButton}><FaChevronRight size={12} /></button>
         </div>
-
         <AnimatePresence mode="wait">
           {activeTweet.image ? (
             // OPSI A: Kalau ada image, tampilkan GAMBAR
-            <motion.a 
+            <motion.a
                 key={`img-${activeTweet.id}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -180,10 +178,10 @@ const TwitterTabContent = () => {
                 rel="noreferrer"
                 style={{ width: "100%", height: "100%", display: "block" }}
             >
-                <img 
-                  src={activeTweet.image} 
-                  alt="Tweet media" 
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                <img
+                  src={activeTweet.image}
+                  alt="Tweet media"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
             </motion.a>
           ) : (
@@ -194,13 +192,13 @@ const TwitterTabContent = () => {
                animate={{ opacity: 1, scale: 1 }}
                exit={{ opacity: 0, scale: 0.9 }}
                transition={{ duration: 0.3 }}
-               style={{ 
-                 width: "100%", 
-                 height: "100%", 
-                 display: "flex", 
-                 alignItems: "center", 
+               style={{
+                 width: "100%",
+                 height: "100%",
+                 display: "flex",
+                 alignItems: "center",
                  justifyContent: "center",
-                 background: "rgba(29, 161, 242, 0.05)", 
+                 background: "rgba(29, 161, 242, 0.05)",
                }}
             >
                <FaTwitter size={80} color="#1DA1F2" style={{ opacity: 0.8 }} />
@@ -212,7 +210,7 @@ const TwitterTabContent = () => {
       {/* KANAN: Isi Tweet */}
       <div className={styles.textGroup}>
         <div className={styles.iconLarge} style={{ color: "#1DA1F2" }}><FaTwitter /></div>
-        
+       
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTweet.id}
@@ -223,11 +221,11 @@ const TwitterTabContent = () => {
             style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
           >
             <h2 className={styles.dummyTitle} style={{ color: "#1DA1F2" }}>On The Timeline</h2>
-            
+           
             <p className={styles.dummyDesc} style={{ fontStyle: "italic", fontSize: "0.95rem" }}>
                 "{activeTweet.text}"
             </p>
-            
+           
             <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
                 <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>{activeTweet.date}</span>
                 <a href={activeTweet.link} target="_blank" rel="noreferrer" style={{ color: "#1DA1F2", fontSize: "0.8rem", textDecoration: "none", fontWeight: "bold", marginTop: '5px' }}>
@@ -249,7 +247,7 @@ const ThreadsTabContent = () => {
       id: 1,
       text: "i learned something about smart contract. specifically Solidity - Ethereum!",
       date: "Nov 25, 2025: 4:13 P.M",
-      link: "https://www.threads.com/@arnawa.sui/post/DReVWBGkjRk?xmt=AQF0mQjwBUg3X4165tAlegMCJh3dI4pCap-J-peoDIFYhg", 
+      link: "https://www.threads.com/@arnawa.sui/post/DReVWBGkjRk?xmt=AQF0mQjwBUg3X4165tAlegMCJh3dI4pCap-J-peoDIFYhg",
       image: "/assets/ethereum.png"
     },
     {
@@ -279,7 +277,7 @@ const ThreadsTabContent = () => {
     <div className={styles.dummyCard}>
       {/* KIRI: Preview Box */}
       <div className={styles.previewBox} style={{ position: 'relative', border: activeThread.image ? "none" : "2px dashed rgba(255,255,255,0.1)", overflow: 'hidden' }}>
-        
+       
         <div className={styles.navOverlay}>
           <button onClick={handlePrev} className={styles.navButton}><FaChevronLeft size={12} /></button>
           <button onClick={handleNext} className={styles.navButton}><FaChevronRight size={12} /></button>
@@ -287,7 +285,7 @@ const ThreadsTabContent = () => {
 
         <AnimatePresence mode="wait">
           {activeThread.image ? (
-             <motion.a 
+             <motion.a
                 key={`img-${activeThread.id}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -298,10 +296,10 @@ const ThreadsTabContent = () => {
                 rel="noreferrer"
                 style={{ width: "100%", height: "100%", display: "block" }}
             >
-                <img 
-                  src={activeThread.image} 
-                  alt="Threads media" 
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                <img
+                  src={activeThread.image}
+                  alt="Threads media"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
             </motion.a>
           ) : (
@@ -311,14 +309,14 @@ const ThreadsTabContent = () => {
                animate={{ opacity: 1, scale: 1 }}
                exit={{ opacity: 0, scale: 0.9 }}
                transition={{ duration: 0.3 }}
-               style={{ 
-                 width: "100%", 
-                 height: "100%", 
-                 display: "flex", 
-                 alignItems: "center", 
+               style={{
+                 width: "100%",
+                 height: "100%",
+                 display: "flex",
+                 alignItems: "center",
                  justifyContent: "center",
                  // Background hitam khas Threads (atau putih di light mode nanti otomatis menyesuaikan container)
-                 background: "rgba(255, 255, 255, 0.05)", 
+                 background: "rgba(255, 255, 255, 0.05)",
                }}
             >
                {/* Icon Threads Gede */}
@@ -331,7 +329,7 @@ const ThreadsTabContent = () => {
       {/* KANAN: Isi Thread */}
       <div className={styles.textGroup}>
         <div className={styles.iconLarge}><SiThreads /></div>
-        
+       
         <AnimatePresence mode="wait">
           <motion.div
             key={activeThread.id}
@@ -342,11 +340,11 @@ const ThreadsTabContent = () => {
             style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
           >
             <h2 className={styles.dummyTitle}>Threads</h2>
-            
+           
             <p className={styles.dummyDesc} style={{ fontStyle: "normal", fontSize: "0.95rem" }}>
                 "{activeThread.text}"
             </p>
-            
+           
             <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
                 <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>{activeThread.date}</span>
                 <a href={activeThread.link} target="_blank" rel="noreferrer" style={{ fontSize: "0.8rem", textDecoration: "none", fontWeight: "bold", marginTop: '5px', color: 'inherit' }}>
@@ -362,37 +360,37 @@ const ThreadsTabContent = () => {
 
 // --- KOMPONEN LINKEDIN (DYNAMIC BANNER: LIGHT/DARK) ---
 const LinkedInTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  
-  const bannerImage = isDarkMode 
-    ? "/assets/linkedin-dark.png" 
+ 
+  const bannerImage = isDarkMode
+    ? "/assets/linkedin-dark.png"
     : "/assets/linkedin-light.png";
-    
-  const linkedinUrl = "https://www.linkedin.com/in/arnawa-ugra-39277a21b/"; 
+   
+  const linkedinUrl = "https://www.linkedin.com/in/arnawa-ugra-39277a21b/";
 
   return (
     <div className={styles.dummyCard} style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
-        
+       
         {/* 1. GAMBAR CANVA (Background Dinamis) */}
-        <motion.img 
+        <motion.img
             key={bannerImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            src={bannerImage} 
-            alt="Connect on LinkedIn" 
-            style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', 
+            src={bannerImage}
+            alt="Connect on LinkedIn"
+            style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
                 borderRadius: '12px',
                 filter: isDarkMode ? 'brightness(1)' : 'brightness(1)'
-            }} 
+            }}
         />
 
         {/* 2. CTA BUTTON (Overlay) */}
         <div style={{
             position: 'absolute',
-            inset: 0, 
+            inset: 0,
             paddingTop: '10rem',
             display: 'flex',
             alignItems: 'center',
@@ -400,7 +398,7 @@ const LinkedInTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
             paddingRight: '20px'
         }}>
 
-            <motion.a 
+            <motion.a
                 href={linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -409,7 +407,7 @@ const LinkedInTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 style={{
                     // Warna tombol menyesuaikan juga biar makin estetik
                     // Kalau dark mode: Biru LinkedIn, Kalau light mode: Putih (Text Biru) atau tetep Biru
-                    backgroundColor: isDarkMode ? '#0077B5' : '#ffffff', 
+                    backgroundColor: isDarkMode ? '#0077B5' : '#ffffff',
                     color: isDarkMode ? 'white' : '#0077B5',
                     padding: '12px 24px',
                     borderRadius: '50px',
@@ -433,41 +431,41 @@ const LinkedInTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 // --- KOMPONEN DISCORD (DYNAMIC BANNER: LIGHT/DARK) ---
 const DiscordTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  
+ 
   // Logic: Ganti banner sesuai tema
-  const bannerImage = isDarkMode 
-    ? "/assets/discord-dark.png" 
+  const bannerImage = isDarkMode
+    ? "/assets/discord-dark.png"
     : "/assets/discord-light.png";
-    
+   
   const discordUrl = "https://discord.com/users/1320378818464321589"; // 🔴 Ganti link invite servermu
 
   // Warna Khas Discord (Blurple)
-  const discordColor = "#5865F2"; 
+  const discordColor = "#5865F2";
 
   return (
     <div className={styles.dummyCard} style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
-        
+       
         {/* 1. GAMBAR CANVA (Background Dinamis) */}
-        <motion.img 
+        <motion.img
             key={bannerImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            src={bannerImage} 
-            alt="Join Discord Community" 
-            style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', 
+            src={bannerImage}
+            alt="Join Discord Community"
+            style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
                 borderRadius: isDarkMode? '12px':'12px',
                 filter: isDarkMode ? 'brightness(0.9)' : 'brightness(1)'
-            }} 
+            }}
         />
 
         {/* 2. CTA BUTTON (Overlay) */}
         <div style={{
             position: 'absolute',
-            inset: 0, 
+            inset: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center', // Kita taruh tengah biar beda dikit sama LinkedIn
@@ -477,12 +475,12 @@ const DiscordTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
             backgroundColor: 'rgba(0,0,0,0.2)' // Overlay tipis biar teks kebaca
         }}>
 
-            <motion.h3 
+            <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                style={{ 
-                    margin: 0, 
-                    color: '#fff', 
+                style={{
+                    margin: 0,
+                    color: '#fff',
                     textShadow: '0 2px 4px rgba(0,0,0,0.5)',
                     fontSize: '1.3rem',
                     fontWeight: 800
@@ -491,14 +489,14 @@ const DiscordTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 Connect with Me on Discord!
             </motion.h3>
 
-            <motion.a 
+            <motion.a
                 href={discordUrl}
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                    backgroundColor: discordColor, 
+                    backgroundColor: discordColor,
                     color: 'white',
                     padding: '12px 28px',
                     borderRadius: '12px',
@@ -522,39 +520,39 @@ const DiscordTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 // --- KOMPONEN FACEBOOK (DYNAMIC BANNER) ---
 const FacebookTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  
-  const bannerImage = isDarkMode 
-    ? "/assets/facebook-dark.png" 
+ 
+  const bannerImage = isDarkMode
+    ? "/assets/facebook-dark.png"
     : "/assets/facebook-light.png";
-    
+   
   // Ganti ke link profile atau Page kamu
-  const facebookUrl = "https://www.facebook.com/arnawa.ugra.2025"; 
-  const fbColor = "#1877F2"; 
+  const facebookUrl = "https://www.facebook.com/arnawa.ugra.2025";
+  const fbColor = "#1877F2";
 
   return (
     <div className={styles.dummyCard} style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
-        
+       
         {/* 1. BACKGROUND BANNER */}
-        <motion.img 
+        <motion.img
             key={bannerImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            src={bannerImage} 
-            alt="Facebook Profile" 
-            style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', 
+            src={bannerImage}
+            alt="Facebook Profile"
+            style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
                 borderRadius: '12px',
                 filter: isDarkMode ? 'brightness(0.9)' : 'brightness(1)'
-            }} 
+            }}
         />
 
         {/* 2. OVERLAY CTA */}
         <div style={{
             position: 'absolute',
-            inset: 0, 
+            inset: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
@@ -562,14 +560,14 @@ const FacebookTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
             paddingTop: '150px'
         }}>
 
-            <motion.a 
+            <motion.a
                 href={facebookUrl}
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                    backgroundColor: fbColor, 
+                    backgroundColor: fbColor,
                     color: 'white',
                     padding: '12px 28px',
                     borderRadius: '50px',
@@ -593,55 +591,55 @@ const FacebookTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 // --- KOMPONEN EMAIL (GMAIL DIRECT LINK) ---
 const EmailTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  
-  const bannerImage = isDarkMode 
-    ? "/assets/email-dark.png" 
+ 
+  const bannerImage = isDarkMode
+    ? "/assets/email-dark.png"
     : "/assets/email-light.png";
-    
-  const emailAddress = "arnawaugraaa@gmail.com"; 
+   
+  const emailAddress = "arnawaugraaa@gmail.com";
   const gmailDirectLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=Hello%20Nawa!&body=Hi%20Nawa,%20I%20saw%20your%20portfolio...`;
-  
-  const emailColor = "#EA4335"; 
+ 
+  const emailColor = "#EA4335";
 
   return (
     // Gunakan styles.cardLayout (sesuai CSS baru)
     <div className={styles.cardLayout} style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
-        
+       
         {/* 1. BACKGROUND BANNER */}
-        <motion.img 
+        <motion.img
             key={bannerImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            src={bannerImage} 
-            alt="Contact via Email" 
-            style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', 
+            src={bannerImage}
+            alt="Contact via Email"
+            style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
                 borderRadius: '12px',
                 filter: isDarkMode ? 'brightness(0.9)' : 'brightness(1)'
-            }} 
+            }}
         />
 
         {/* 2. OVERLAY CTA */}
         <div style={{
             position: 'absolute',
-            inset: 0, 
+            inset: 0,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center', 
+            justifyContent: 'center',
             flexDirection: 'column',
             gap: '12px',
-            backgroundColor: 'rgba(0,0,0,0.1)' 
+            backgroundColor: 'rgba(0,0,0,0.1)'
         }}>
-            
-            <motion.h3 
+           
+            <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                style={{ 
-                    margin: 0, 
-                    color: '#fff', 
+                style={{
+                    margin: 0,
+                    color: '#fff',
                     textShadow: '0 2px 4px rgba(0,0,0,0.5)',
                     fontSize: '1.5rem',
                     fontWeight: 800
@@ -650,14 +648,14 @@ const EmailTabContent = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 Let's Collaborate
             </motion.h3>
 
-            <motion.a 
+            <motion.a
                 href={gmailDirectLink} // <--- Linknya diganti ke variabel baru
                 target="_blank" // Wajib _blank biar buka tab baru
                 rel="noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                    backgroundColor: emailColor, 
+                    backgroundColor: emailColor,
                     color: 'white',
                     padding: '12px 32px',
                     borderRadius: '50px',
@@ -686,46 +684,46 @@ const AnimatedTabs: React.FC = () => {
 
   // 2. Definisi TABS dipindah ke DALAM sini
   const tabs = [
-    { 
-      id: "instagram", 
-      label: "Instagram", 
-      icon: <FaInstagram />, 
-      content: <InstagramTabContent /> 
+    {
+      id: "instagram",
+      label: "Instagram",
+      icon: <FaInstagram />,
+      content: <InstagramTabContent />
     },
-    { 
-      id: "twitter", 
-      label: "Twitter (X)", 
-      icon: <FaTwitter />, 
-      content: <TwitterTabContent /> 
+    {
+      id: "twitter",
+      label: "Twitter (X)",
+      icon: <FaTwitter />,
+      content: <TwitterTabContent />
     },
-    { 
-      id: "threads", 
-      label: "Threads", 
-      icon: <SiThreads />, 
-      content: <ThreadsTabContent /> 
+    {
+      id: "threads",
+      label: "Threads",
+      icon: <SiThreads />,
+      content: <ThreadsTabContent />
     },
-    { 
-      id: "linkedin", 
-      label: "LinkedIn", 
-      icon: <FaLinkedin />, 
-      content: <LinkedInTabContent isDarkMode={isDarkMode} /> 
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      icon: <FaLinkedin />,
+      content: <LinkedInTabContent isDarkMode={isDarkMode} />
     },
-    { 
-        id: "discord", 
-        label: "Discord", 
-        icon: <FaDiscord />, 
-        content: <DiscordTabContent isDarkMode={isDarkMode} /> 
+    {
+        id: "discord",
+        label: "Discord",
+        icon: <FaDiscord />,
+        content: <DiscordTabContent isDarkMode={isDarkMode} />
     },
-    { 
-      id: "facebook", 
-      label: "Facebook", 
-      icon: <FaFacebook />, 
+    {
+      id: "facebook",
+      label: "Facebook",
+      icon: <FaFacebook />,
       content: <FacebookTabContent isDarkMode={isDarkMode} />
     },
-    { 
+    {
       id: "email",
-      label: "Email", 
-      icon: <FaEnvelope />, 
+      label: "Email",
+      icon: <FaEnvelope />,
       content: <EmailTabContent isDarkMode={isDarkMode} /> },
   ];
 
@@ -757,10 +755,9 @@ const AnimatedTabs: React.FC = () => {
 
       {/* Content Container */}
       <div className={styles.contentContainer} data-theme={isDarkMode ? "dark" : "light"}>
-        
         {/* Toggle Button */}
-        <button 
-          className={styles.themeToggleBtn} 
+        <button
+          className={styles.themeToggleBtn}
           onClick={() => setIsDarkMode(!isDarkMode)}
           title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         >
@@ -788,5 +785,4 @@ const AnimatedTabs: React.FC = () => {
     </div>
   );
 };
-
 export default AnimatedTabs;
