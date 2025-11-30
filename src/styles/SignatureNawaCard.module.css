@@ -1,0 +1,102 @@
+/* Container luar */
+.cardWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CARD utama */
+.card {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 16rem;
+  height: auto;
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Foto (bagian atas) */
+.left {
+  width: 100%;
+  height: 12.5rem;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bagian teks */
+.right {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  flex: 1;
+  align-items: flex-start;
+  color: white;
+}
+
+.name {
+  font-family: 'Lexend', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.role {
+  margin: 0.3125rem 0 0;
+  font-family: 'Lexend', sans-serif;
+  font-size: 1rem;
+  opacity: 0.8;
+  letter-spacing: 0.3px;
+}
+
+/* Link */
+.seeMoreLink {
+  text-decoration: none;
+  margin-top: 1rem;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.seeMoreText {
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #00b0ff;
+  opacity: 0.9;
+  margin: 0;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid rgba(0, 176, 255, 0.5);
+  display: inline-block;
+  padding-bottom: 0.125rem;
+}
+
+/* Efek saat link disentuh kursor (hover) */
+.seeMoreLink:hover .seeMoreText {
+  color: #ffffff; /* Ubah warna teks saat hover */
+  border-bottom: 1px solid #ffffff; /* Ubah warna border saat hover */
+  opacity: 1;
+}
+
+.seeMoreLink:hover {
+  opacity: 0.8;
+}

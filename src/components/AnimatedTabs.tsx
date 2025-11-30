@@ -22,7 +22,7 @@ import { SiThreads } from "react-icons/si";
 const InstagramTabContent = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0); 
-  const token = process.env.REACT_APP_IG_TOKEN; 
+  const token = import.meta.env.VITE_IG_TOKEN;
 
   const truncate = (str: string, n: number) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;

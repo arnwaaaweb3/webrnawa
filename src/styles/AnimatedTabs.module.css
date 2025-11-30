@@ -2,32 +2,31 @@
 
 .container {
   width: 100%;
-  max-width: 925px;
-  display: flex;
-  flex-direction: column;
+  max-width: 57.8125rem;
   gap: 1rem;
 }
 
 /* Bagian Tombol Tab */
 .tabList {
   display: flex;
+  position: relative;
   flex-wrap: wrap;
   justify-content: center; 
-  gap: 0.5rem;
-  
+  gap: 0px;
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 0.5rem;
-  border-radius: 16px;
+  border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%; 
+  width: 100%;
 }
 
 .tabButton {
   position: relative;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   font-family: 'Lexend', sans-serif;
   font-weight: 500;
   border-radius: 8px;
@@ -40,7 +39,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tabButton:hover {
@@ -56,28 +55,25 @@
   position: absolute;
   inset: 0;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   z-index: -1;
 }
 
 /* Bagian Konten Container Utama */
 .contentContainer {
   padding: 1.5rem;
+  height: 15rem;
+  width: 100%;
+  max-width: 55.625rem;
+  border-radius: 1rem;
   background: rgba(17, 17, 17, 0.6);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   color: white;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  height: 240px;
-  width: 100%; 
-  max-width: 890px;
-  
   position: relative;
   overflow: hidden;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,12 +89,6 @@
 /* --- STRUKTUR 2 KOLOM --- */
 
 .dummyCard {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
   gap: 1.5rem;
 }
 
@@ -118,13 +108,12 @@
 
 /* CONTAINER KANAN (Teks & Icon) */
 .textGroup {
-  flex: 1;
   display: flex;
-  gap: 20px; 
+  gap: 1.25rem;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  padding-right: 15px;
+  padding-right: 1rem;
   justify-content: center;
 }
 
@@ -169,13 +158,13 @@
 }
 
 .navButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
   pointer-events: auto;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,19 +183,16 @@
 
 /* 1. Tombol Toggle (Matahari/Bulan) */
 .themeToggleBtn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
   z-index: 20;
-  
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,7 +206,6 @@
 }
 
 /* 2. Style Khusus saat Mode LIGHT (Terang) Aktif */
-/* Selector ini artinya: Kalau elemen contentContainer punya atribut data-theme="light" */
 .contentContainer[data-theme="light"] {
   background: rgba(245, 245, 245, 0.95); /* Jadi Putih */
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -272,6 +257,10 @@
     min-height: 380px;
     padding: 1.25rem;
   }
+  
+  .tabList {
+      gap: 0.25rem;
+  }
 
   .dummyCard {
     flex-direction: column-reverse;
@@ -281,15 +270,25 @@
   .previewBox {
     width: 100%;
     min-height: 180px;
+    min-width: unset;
   }
 
   .textGroup {
     align-items: center;
     text-align: center;
     padding-right: 0;
+    padding-top: 10px;
   }
   
   .iconLarge {
     font-size: 2.5rem;
+  }
+  
+  .dummyTitle {
+    font-size: 1.3rem; /* NEW: Kecilkan font heading di mobile */
+  }
+  
+  .dummyDesc {
+    font-size: 0.85rem; /* NEW: Kecilkan font deskripsi di mobile */
   }
 }
