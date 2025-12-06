@@ -2,8 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders Nawa welcome text on homepage', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  // Kita mencari teks 'Hello! My Name is Nawa' yang ada di HomePage.tsx
+  const headingElement = screen.getByText(/Hello! My Name is Nawa/i);
+  expect(headingElement).toBeInTheDocument();
 });
